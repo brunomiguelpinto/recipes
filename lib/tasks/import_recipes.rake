@@ -30,12 +30,14 @@ namespace :recipes do
         author_id: author&.id,
         category_id: category&.id,
         cuisine_id: cuisine&.id,
+        cook_time: recipe_data["cook_time"],
+        prep_time: recipe_data["prep_time"],
+        ratings: recipe_data["ratings"],
+        image_url: recipe_data["image"],
+        ingredients: recipe_data["ingredients"].join("\n")
       )
 
-      unless recipe.valid?
-        binding.pry
-        puts "esta a partir aqui"
-      end
+      #binding.pry
       recipe.save!
 
     end

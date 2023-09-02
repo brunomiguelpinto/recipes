@@ -40,6 +40,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_172758) do
     t.bigint "author_id"
     t.bigint "category_id"
     t.bigint "cuisine_id"
+    t.integer "cook_time"
+    t.integer "prep_time"
+    t.float "ratings"
+    t.string "image_url"
+    t.text "ingredients"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_recipes_on_author_id"
