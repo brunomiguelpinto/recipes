@@ -15,17 +15,36 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_172758) do
   enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_authors_on_name", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "cuisines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_cuisines_on_name", unique: true
   end
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
-    t.text "description"
-    t.integer "cook_time"
-    t.integer "prep_time"
+    t.bigint "author_id"
+    t.bigint "category_id"
+    t.bigint "cuisine_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_recipes_on_author_id"
+    t.index ["category_id"], name: "index_recipes_on_category_id"
+    t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id"
   end
 
 end

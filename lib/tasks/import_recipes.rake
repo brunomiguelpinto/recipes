@@ -21,9 +21,23 @@ namespace :recipes do
 
     # Iterate through each recipe and create it in the database
     recipes_data.each do |recipe_data|
-      recipe = Recipe.create!(
+      author = Author.find_or_create_by!(name: recipe_data['author']) if recipe_data['author'].present?
+      category = Category.find_or_create_by!(name: recipe_data['category']) if recipe_data['category'].present?
+      cuisine = Cuisine.find_or_create_by!(name: recipe_data['cuisine']) if recipe_data['cuisine'].present?
+
+      recipe = Recipe.new(
         title: recipe_data["title"],
+        author_id: author&.id,
+        category_id: category&.id,
+        cuisine_id: cuisine&.id,
       )
+
+      unless recipe.valid?
+        binding.pry
+        puts "esta a partir aqui"
+      end
+      recipe.save!
+
     end
 
     puts "Finished importing recipes from #{file_path}"
