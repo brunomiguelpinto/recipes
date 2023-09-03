@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 namespace :recipes do
-  desc "Import recipes from a JSON file"
-  task :import, [:file] => :environment do |t, args|
-    file_path = args[:file] || "lib/recipes-en.json"
+  desc 'Import recipes from a JSON file'
+  task :import, [:file] => :environment do |_t, args|
+    file_path = args[:file] || 'lib/recipes-en.json'
 
     # Ensure the file exists before proceeding
     unless File.exist?(file_path)
@@ -26,20 +28,19 @@ namespace :recipes do
       cuisine = Cuisine.find_or_create_by!(name: recipe_data['cuisine']) if recipe_data['cuisine'].present?
 
       recipe = Recipe.new(
-        title: recipe_data["title"],
+        title: recipe_data['title'],
         author_id: author&.id,
         category_id: category&.id,
         cuisine_id: cuisine&.id,
-        cook_time: recipe_data["cook_time"],
-        prep_time: recipe_data["prep_time"],
-        ratings: recipe_data["ratings"],
-        image_url: recipe_data["image"],
-        ingredients: recipe_data["ingredients"].join("\n")
+        cook_time: recipe_data['cook_time'],
+        prep_time: recipe_data['prep_time'],
+        ratings: recipe_data['ratings'],
+        image_url: recipe_data['image'],
+        ingredients: recipe_data['ingredients'].join("\n")
       )
 
-      #binding.pry
+      # binding.pry
       recipe.save!
-
     end
 
     puts "Finished importing recipes from #{file_path}"
