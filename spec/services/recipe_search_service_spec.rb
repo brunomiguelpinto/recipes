@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe RecipeSearchService do
-  let(:author1) { create(:author) }
-  let(:author2) { create(:author) }
+  let(:author1) { create(:author, name: 'Ratatouille') }
+  let(:author2) { create(:author, name: 'Rato Esquilo') }
 
-  let(:category1) { create(:category) }
-  let(:category2) { create(:category) }
+  let(:category1) { create(:category, name: 'Moms Best Recipes') }
+  let(:category2) { create(:category, name: 'Grandma Best Recipes') }
 
   let(:cuisine1) { create(:cuisine, name: 'Italian') }
   let(:cuisine2) { create(:cuisine, name: 'Mexican') }

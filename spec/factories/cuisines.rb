@@ -4,6 +4,6 @@
 
 FactoryBot.define do
   factory :cuisine do
-    name { Faker::Food.cuisine }
+    name { "Cuisine - #{Faker::Food.dish}" }
   end
 end
