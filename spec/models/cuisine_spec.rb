@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/models/cuisine_spec.rb
 
 require 'rails_helper'
@@ -16,8 +18,8 @@ RSpec.describe Cuisine, type: :model do
 
   describe 'behavior' do
     let!(:cuisine) { create(:cuisine) }
-    let!(:recipe1) { create(:recipe, cuisine: cuisine) }
-    let!(:recipe2) { create(:recipe, cuisine: cuisine) }
+    let!(:recipe1) { create(:recipe, cuisine:) }
+    let!(:recipe2) { create(:recipe, cuisine:) }
 
     context 'when cuisine is destroyed' do
       it 'nullifies the cuisine_id on its recipes' do

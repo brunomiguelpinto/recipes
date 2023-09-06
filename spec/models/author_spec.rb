@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # spec/models/author_spec.rb
 require 'rails_helper'
 
 RSpec.describe Author, type: :model do
   describe 'validations' do
-    subject { build(:author) }  # assumes you have a FactoryBot definition for :author
+    subject { build(:author) } # assumes you have a FactoryBot definition for :author
 
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
@@ -15,7 +17,7 @@ RSpec.describe Author, type: :model do
 
   describe 'behavior' do
     let!(:author) { create(:author) }
-    let!(:recipe) { create(:recipe, author: author) }  # assumes you have a FactoryBot definition for :recipe
+    let!(:recipe) { create(:recipe, author:) }  # assumes you have a FactoryBot definition for :recipe
 
     context 'when author is destroyed' do
       it 'nullifies the author_id on its recipes' do

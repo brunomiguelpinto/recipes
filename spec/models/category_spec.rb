@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/models/category_spec.rb
 
 require 'rails_helper'
@@ -16,8 +18,8 @@ RSpec.describe Category, type: :model do
 
   describe 'behavior' do
     let!(:category) { create(:category) }
-    let!(:recipe1) { create(:recipe, category: category) }
-    let!(:recipe2) { create(:recipe, category: category) }
+    let!(:recipe1) { create(:recipe, category:) }
+    let!(:recipe2) { create(:recipe, category:) }
 
     context 'when category is destroyed' do
       it 'nullifies the category_id on its recipes' do
