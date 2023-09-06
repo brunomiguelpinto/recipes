@@ -37,18 +37,29 @@
     margin-right: 15px;
 }
 
-.recipe-content {
-    display: inline-block;
-    vertical-align: top;
-    width: calc(100% - 125px); /* Considering 100px for image and 15px for margin */
-}
 
 .recipe-ingredients {
     font-size: 0.9em;
     color: #555;
 }
 
+.recipe-content {
+    display: flex;
+    justify-content: space-between; /* This will separate the details and the image. */
+    align-items: start; /* Align items to the start of their container. */
+}
+
+.recipe-details {
+    flex: 1; /* Take up the remaining space after allocating space for the image. */
+    padding-right: 20px; /* Space between the details and the image. */
+}
+
+.recipe-image {
+    width: 40%; /* Adjust based on your design needs. */
+    max-width: 400px; /* Example max width, can be adjusted. */
+}
+
 .recipe-image img {
-    max-width: 70px;
-    max-height: 70px;
+    width: 100%; /* Ensures the image takes up the full width of its container. */
+    height: auto; /* Maintains the aspect ratio of the image. */
 }

@@ -56,18 +56,3 @@ Recipe Finder is an advanced recipe search application that allows users to disc
 
 6. Access the application by navigating to `http://localhost:3000/recipes/search` or the online 
 version in your browser.
-
-## Contributing
-
-We encourage community contributions! Please read through our contributing guidelines before making any updates.
-
-1. Fork the repository.
-2. Create a new branch.
-3. Make your changes.
-4. Open a pull request.
-
-## Future Improvements
-
-- Introduce a suggestion-based search for categories, authors, and cuisines.
-- Optimize performance for larger databases.
-- Integrate user accounts and personalized recipe recommendations.

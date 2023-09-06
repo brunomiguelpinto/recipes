@@ -29,33 +29,37 @@
   </div>
 <% end %>
 
+
 <% if @recipes.present? %>
   <h2>Search Results:</h2>
   <ul class="recipe-list">
     <% @recipes.each do |recipe| %>
       <li class="recipe-item">
-        <h3><%= recipe.title %></h3>
+        <div class="recipe-content">
+          <div class="recipe-details">
+            <h3><%= recipe.title %></h3>
 
-        <% if recipe.image_url.present? %>
-          <div class="recipe-image">
-            <%= image_tag recipe.image_url, alt: recipe.title %>
+            <p><strong>Author:</strong> <%= recipe.author&.name %></p>
+            <p><strong>Category:</strong> <%= recipe.category&.name %></p>
+            <p><strong>Cuisine:</strong> <%= recipe.cuisine&.name %></p>
+            <p><strong>Cook Time:</strong> <%= recipe.cook_time %> minutes</p>
+            <p><strong>Prep Time:</strong> <%= recipe.prep_time %> minutes</p>
+            <p><strong>Ratings:</strong> <%= recipe.ratings %></p>
+
+            <h4>Ingredients:</h4>
+            <ul>
+              <% recipe.ingredients.each do |ingredient| %>
+                <li><%= ingredient %></li>
+              <% end %>
+            </ul>
           </div>
-        <% end %>
 
-        <p><strong>Author:</strong> <%= recipe.author&.name %></p>
-        <p><strong>Category:</strong> <%= recipe.category&.name %></p>
-        <p><strong>Cuisine:</strong> <%= recipe.cuisine&.name %></p>
-        <p><strong>Cook Time:</strong> <%= recipe.cook_time %> minutes</p>
-        <p><strong>Prep Time:</strong> <%= recipe.prep_time %> minutes</p>
-        <p><strong>Ratings:</strong> <%= recipe.ratings %></p>
-
-        <h4>Ingredients:</h4>
-        <ul>
-          <% recipe.ingredients.each do |ingredient| %>
-            <li><%= ingredient %></li>
+          <% if recipe.image_url.present? %>
+            <div class="recipe-image">
+              <%= image_tag recipe.image_url, alt: recipe.title %>
+            </div>
           <% end %>
-        </ul>
-
+        </div>
       </li>
     <% end %>
   </ul>
