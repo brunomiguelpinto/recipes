@@ -8,8 +8,6 @@ FactoryBot.define do
 
     association :author
     association :category
-    # Add any other fields/associations as necessary
-
-    # You can also define other traits or variations of this factory if needed.
+    association :cuisine
   end
 end
