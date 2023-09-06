@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_233213) do
     t.integer "prep_time"
     t.float "ratings"
     t.string "image_url"
-    t.text "ingredients"
+    t.jsonb "ingredients"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.virtual "ingredients_tsvector", type: :tsvector, as: "to_tsvector('english'::regconfig, ingredients)", stored: true

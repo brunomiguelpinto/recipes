@@ -63,6 +63,11 @@ class RecipeSearchService
 
     query = 'ingredients_tsvector @@ websearch_to_tsquery(?)'
     @recipes = @recipes.where(query, @params[:ingredients])
+    @recipes = @recipes.order_by_ingredient_count if sort_by_ingredient_amount?
+  end
+
+  def sort_by_ingredient_amount?
+    @params[:sort_ingredient_amount].nil? || @params[:sort_ingredient_amount] == 'true'
   end
 
   # Apply sorting to the recipes if valid sort_field and sort_direction are provided.

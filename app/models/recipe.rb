@@ -6,4 +6,12 @@ class Recipe < ApplicationRecord
   belongs_to :cuisine, optional: true
 
   validates :ingredients, :title, presence: true
+
+  scope :with_ingredient_count, -> {
+    select('recipes.*, jsonb_array_length(ingredients) as ingredient_count')
+  }
+
+  scope :order_by_ingredient_count, -> {
+    with_ingredient_count.order('ingredient_count ASC')
+  }
 end

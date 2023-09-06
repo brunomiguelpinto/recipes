@@ -11,7 +11,7 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.integer :prep_time
       t.float :ratings
       t.string :image_url
-      t.text :ingredients
+      t.jsonb :ingredients
       t.timestamps
     end
   end

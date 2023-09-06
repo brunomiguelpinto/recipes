@@ -36,7 +36,7 @@ namespace :recipes do
         prep_time: recipe_data['prep_time'],
         ratings: recipe_data['ratings'],
         image_url: recipe_data['image'],
-        ingredients: recipe_data['ingredients'].join("\n")
+        ingredients: recipe_data['ingredients']
       )
 
       # binding.pry
