@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class AddIngredientsTsvectorToRecipes < ActiveRecord::Migration[7.0]
   def up
     execute <<-SQL
-      ALTER TABLE recipes ADD COLUMN ingredients_tsvector tsvector 
+      ALTER TABLE recipes ADD COLUMN ingredients_tsvector tsvector#{' '}
           GENERATED ALWAYS AS (to_tsvector('english', ingredients)) STORED;
     SQL
 
