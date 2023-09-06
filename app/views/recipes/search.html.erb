@@ -1,0 +1,63 @@
+<%= form_with url: search_recipes_path, method: :get, local: true do |form| %>
+  <div class="form-group">
+    <%= select_tag :category_id,
+                   options_for_select(@categories, selected: params[:category_id]),
+                   include_blank: 'Select a category'
+    %>
+  </div>
+
+  <div class="form-group">
+    <%= select_tag :author_id,
+                   options_for_select(@authors, selected: params[:author_id]),
+                   include_blank: 'Select an author'
+    %>
+  </div>
+
+  <div class="form-group">
+    <%= select_tag :cuisine_id,
+                   options_for_select(@cuisines, selected: params[:cuisine_id]),
+                   include_blank: 'Select a cuisine'
+    %>
+  </div>
+
+  <div class="form-group">
+    <%= text_field_tag :ingredients, params[:ingredients], placeholder: 'E.g., chocolate' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit 'Search', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<% if @recipes.present? %>
+  <h2>Search Results:</h2>
+  <ul class="recipe-list">
+    <% @recipes.each do |recipe| %>
+      <li class="recipe-item">
+        <h3><%= recipe.title %></h3>
+
+        <% if recipe.image_url.present? %>
+          <div class="recipe-image">
+            <%= image_tag recipe.image_url, alt: recipe.title %>
+          </div>
+        <% end %>
+
+        <p><strong>Author:</strong> <%= recipe.author&.name %></p>
+        <p><strong>Category:</strong> <%= recipe.category&.name %></p>
+        <p><strong>Cuisine:</strong> <%= recipe.cuisine&.name %></p>
+        <p><strong>Cook Time:</strong> <%= recipe.cook_time %> minutes</p>
+        <p><strong>Prep Time:</strong> <%= recipe.prep_time %> minutes</p>
+        <p><strong>Ratings:</strong> <%= recipe.ratings %></p>
+
+        <h4>Ingredients:</h4>
+        <ul>
+          <% recipe.ingredients.each do |ingredient| %>
+            <li><%= ingredient %></li>
+          <% end %>
+        </ul>
+
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @recipes, params: request.query_parameters %>
+<% end %>

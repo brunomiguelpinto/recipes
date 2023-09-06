@@ -26,7 +26,7 @@ class RecipeSearchService
   # @param params [Hash] The search and pagination parameters.
   def initialize(params)
     @params = params
-    @recipes = Recipe.all
+    @recipes = Recipe.includes(:author, :category, :cuisine).all
   end
 
   # Execute the search based on the parameters.

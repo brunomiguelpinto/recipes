@@ -1,58 +1,73 @@
-# Recipe Search App
+# Recipe Finder 🍲
 
 ## Overview
-The Recipe Search App is a Rails application designed to help users find recipes based on various criteria including authors, categories, cuisines, and ingredients. The application utilizes Postgres' full-text search capabilities to efficiently search through ingredients.
+
+Recipe Finder is an advanced recipe search application that allows users to discover new recipes based on various criteria. Whether you're hunting for a dish by a specific author, looking for meals within a category, or just trying to find what you can make with chocolate, Recipe Finder has got you covered!
 
 ## Features
-- **Search Recipes**: Find recipes based on specific criteria.
-- **Full-Text Search**: Efficiently search within ingredients using Postgres' built-in full-text search.
-- **Sort and Pagination**: Results can be sorted by ratings, prep time, and cook time. Pagination ensures results are easily navigable.
-- **Associations**: Recipes can be associated with authors, categories, and cuisines.
 
-## Design Decisions
+1. **Advanced Search**: Filter recipes by:
+   - **Author**: Discover dishes from your favorite chefs.
+   - **Category**: In the mood for a dessert or a main course? We got you!
+   - **Cuisine**: Travel the world with your taste buds. From Italian to Japanese cuisine, we have it all.
+   - **Ingredients**: Enter what you have, and we'll tell you what you can make!
 
-### Ingredients as Text Instead of Separate Table
-While a common approach would be to have a separate table for ingredients and join it with recipes, for this application, we decided to keep ingredients as a text column in the recipes table. This allows for more efficient full-text searches without the complexity of multi-table joins. The `to_tsvector` function in Postgres converts this column into a format suitable for text searches.
+2. **Sorting & Pagination**: With a vast database, Recipe Finder offers:
+   - **Sorting**: Rank recipes by ratings, preparation time, cooking time, and more.
+   - **Pagination**: Efficiently browse through results, 10 recipes at a time.
+
+3. **Responsive UI**: Designed to be user-friendly and accessible across devices.
 
 ## Getting Started
 
 ### Prerequisites
-- Ruby version: 3.2.1
-- PostgreSQL
 
-### Installation
+- Ruby version: `3.2.1`
+- Rails version: `7.0.7.2`
+- PostgreSQL: `14.9`
+
+### Setup
+
 1. Clone the repository:
-   ```
-   git clone [repository_url]
-   ```
-
-2. Change directory:
-   ```
-   cd recipe_search_app
+   ```bash
+   git clone git@github.com:brunomiguelpinto/recipes.git
    ```
 
-3. Install dependencies:
+2. Navigate to the project directory:
+   ```bash
+   cd pennylane_recipes
    ```
+
+3. Install the required gems:
+   ```bash
    bundle install
    ```
 
 4. Set up the database:
-   ```
+   ```bash
    rails db:create db:migrate
+   rake recipes:import
    ```
 
-5. Start the server:
-   ```
+5. Start the Rails server:
+   ```bash
    rails s
    ```
 
-6. Open a web browser and navigate to `http://localhost:3000`.
+6. Access the application by navigating to `http://localhost:3000/recipes/search` or the online 
+version in your browser.
 
-## Usage
-Example of how to use the application or API endpoints (provide some examples).
+## Contributing
 
-## Running Tests
-To ensure the functionality of the application, we've written specs for models and services. Run them using:
-```
-rspec
-```
+We encourage community contributions! Please read through our contributing guidelines before making any updates.
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes.
+4. Open a pull request.
+
+## Future Improvements
+
+- Introduce a suggestion-based search for categories, authors, and cuisines.
+- Optimize performance for larger databases.
+- Integrate user accounts and personalized recipe recommendations.

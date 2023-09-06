@@ -15,13 +15,13 @@ RSpec.describe RecipeSearchService do
   let!(:base_recipe1) do
     create(:recipe,
            author: author1, category: category1,
-           ratings: 5, ingredients: 'milk, chocolate',
+           ratings: 5, ingredients: ['milk, chocolate'],
            cuisine: cuisine1)
   end
   let!(:base_recipe2) do
     create(:recipe,
            author: author2, category: category2,
-           ratings: 4, ingredients: 'milk, eggs',
+           ratings: 4, ingredients: ['milk, eggs'],
            cuisine: cuisine2)
   end
 
