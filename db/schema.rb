@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_01_172758) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_05_233213) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,9 +47,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_172758) do
     t.text "ingredients"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.virtual "ingredients_tsvector", type: :tsvector, as: "to_tsvector('english'::regconfig, ingredients)", stored: true
     t.index ["author_id"], name: "index_recipes_on_author_id"
     t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id"
+    t.index ["ingredients_tsvector"], name: "index_recipes_on_ingredients_tsvector", using: :gin
   end
 
 end
