@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RecipeSearchService do
@@ -8,21 +9,21 @@ RSpec.describe RecipeSearchService do
   let(:category1) { create(:category) }
   let(:category2) { create(:category) }
 
-  let(:cuisine1) { create(:cuisine, name: "Italian") }
-  let(:cuisine2) { create(:cuisine, name: "Mexican") }
+  let(:cuisine1) { create(:cuisine, name: 'Italian') }
+  let(:cuisine2) { create(:cuisine, name: 'Mexican') }
 
-  let!(:base_recipe1) {
+  let!(:base_recipe1) do
     create(:recipe,
            author: author1, category: category1,
            ratings: 5, ingredients: 'milk, chocolate',
            cuisine: cuisine1)
-  }
-  let!(:base_recipe2) {
+  end
+  let!(:base_recipe2) do
     create(:recipe,
            author: author2, category: category2,
            ratings: 4, ingredients: 'milk, eggs',
            cuisine: cuisine2)
-  }
+  end
 
   describe '#call' do
     subject(:service_call) { described_class.call(params) }

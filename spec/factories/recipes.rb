@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :recipe do
     title { "Delicious Recipe #{Faker::Food.dish}" } # Using Faker to generate a unique dish name

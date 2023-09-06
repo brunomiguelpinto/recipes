@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/services/recipe_search_service.rb
 
 # The RecipeSearchService class provides a service for searching recipes
@@ -57,18 +59,18 @@ class RecipeSearchService
 
   # Filter recipes by ingredients using PostgreSQL's full-text search.
   def filter_by_ingredients
-    if @params[:ingredients].present?
-      query = "ingredients_tsvector @@ websearch_to_tsquery(?)"
-      @recipes = @recipes.where(query, @params[:ingredients])
-    end
+    return unless @params[:ingredients].present?
+
+    query = 'ingredients_tsvector @@ websearch_to_tsquery(?)'
+    @recipes = @recipes.where(query, @params[:ingredients])
   end
 
   # Apply sorting to the recipes if valid sort_field and sort_direction are provided.
   def apply_sorting
-    if valid_sort_field?(@params[:sort_field])
-      direction = valid_sort_direction?(@params[:sort_direction]) ? @params[:sort_direction] : 'desc'
-      @recipes = @recipes.order(@params[:sort_field] => direction)
-    end
+    return unless valid_sort_field?(@params[:sort_field])
+
+    direction = valid_sort_direction?(@params[:sort_direction]) ? @params[:sort_direction] : 'desc'
+    @recipes = @recipes.order(@params[:sort_field] => direction)
   end
 
   # Paginate the recipes based on page and per_page parameters.
