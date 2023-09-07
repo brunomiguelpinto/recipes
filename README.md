@@ -60,10 +60,6 @@ in your browser.
 
 ## 👩‍🍳 Potential Improvements
 
-Certainly! Here's a README section for your rake task:
-
----
-
 ## Importing Recipes from a JSON File
 
 ### Overview
